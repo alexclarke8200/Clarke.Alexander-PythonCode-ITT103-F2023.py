@@ -24,7 +24,21 @@ print("2. Business Class")
 print("3. Economy Class")
 print("4. Quit")
 
+def reserveSeat(seats, totalSeats, reservedSeats, classType):
+    for row_index, row in enumerate(seats):
+        for seat_index, seat in enumerate(row):
+            if seat == classType and seats[row_index][seat_index] != 'R':
+                seats[row_index][seat_index] = 'R'
+                reservedSeats += 1
+                print("Reserving seat: row", row_index + 1, "column", seat_index + 1)
+                return  # Exit the function after reserving a seat
 
+    if reservedSeats == totalSeats:
+        print("No more available seats!")
+        exit()
+    else:
+        print("Seat type not available or seat already reserved.")
+        return
 class_input = input("Enter your choice: ")
 
 if class_input.lower() == 'q' or class_input.lower() == 'quit':
@@ -46,7 +60,7 @@ else:
 
 # Prompt user for row number
 row_input = input("Enter row number (1-3): ")
-print ("You have selected row" + row_input)
+print ("You have selected row " + row_input)
 rowNumber = int(row_input)
 
 if rowNumber <= 0:
@@ -54,7 +68,7 @@ if rowNumber <= 0:
 
 # Prompt user for seat type (window or aisle)
 seatType_input = input("Enter seat type (W/A): ")
-print ("You have selected seat" + seatType_input)
+print ("You have selected seat " + seatType_input)
 seatType = seatType_input.lower()
 
 # Reserve seat and display messagereserveSeat(seats, totalSeats, reservedSeats, seatType)
